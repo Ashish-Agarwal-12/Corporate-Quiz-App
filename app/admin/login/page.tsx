@@ -45,7 +45,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8 relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
+    <div className="min-h-screen flex items-center justify-center p-4 sm:p-6 md:p-8 relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
       <Toaster position="top-center" />
       <SoundToggle />
       <PulsingBackground />
@@ -54,23 +54,23 @@ export default function AdminLogin() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-md relative z-10"
+        className="w-full max-w-md relative z-10 px-2"
       >
         {/* Logo Header */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-center mb-8"
+          className="text-center mb-6 sm:mb-8"
         >
-          <div className="flex justify-center mb-4">
-            <Logo size="xl" animated={true} />
+          <div className="flex justify-center mb-3 sm:mb-4">
+            <Logo size="lg" animated={true} className="scale-75 sm:scale-100" />
           </div>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="text-white/90 text-lg font-medium"
+            className="text-white/90 text-base sm:text-lg font-medium"
           >
             Unlock Your Mind's Potential
           </motion.p>
@@ -78,18 +78,18 @@ export default function AdminLogin() {
 
         {/* Login Card */}
         <Card className="border-white/30">
-          <CardHeader className="text-center">
-            <CardTitle className="text-3xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          <CardHeader className="text-center p-4 sm:p-6">
+            <CardTitle className="text-2xl sm:text-3xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               Admin Portal
             </CardTitle>
-            <CardDescription className="text-base text-gray-700">
+            <CardDescription className="text-sm sm:text-base text-gray-700">
               Sign in to access the dashboard
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-4 sm:p-6">
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label className="block text-sm font-bold text-gray-800 mb-2">
+                <label className="block text-sm sm:text-base font-bold text-gray-800 mb-2">
                   Username
                 </label>
                 <div className="relative">

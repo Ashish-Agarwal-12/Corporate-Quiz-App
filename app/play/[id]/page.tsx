@@ -13,7 +13,6 @@ import QuestionResults from '@/components/QuestionResults';
 import PlayerQuestionResults from '@/components/PlayerQuestionResults';
 import WinnerCelebration from '@/components/WinnerCelebration';
 import Leaderboard from '@/components/Leaderboard';
-import LoadingSpinner from '@/components/LoadingSpinner';
 import VotingAnimation from '@/components/VotingAnimation';
 import PulsingBackground from '@/components/animations/PulsingBackground';
 import SoundToggle from '@/components/SoundToggle';
@@ -38,8 +37,6 @@ export default function PlayQuiz() {
   const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
   const [questionResult, setQuestionResult] = useState<QuestionResult | null>(null);
   const [winners, setWinners] = useState<LeaderboardEntry[]>([]);
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const playerId = localStorage.getItem('player_id');
     const storedQuizId = localStorage.getItem('quiz_id');
@@ -250,8 +247,16 @@ export default function PlayQuiz() {
     }
   }, [selectedOption]);
 
-  if (loading) return <LoadingSpinner />;
-  if (!quiz || !player) return <div>Error loading quiz</div>;
+  if (!quiz || !player) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
+        <div className="text-center text-white">
+          <div className="text-6xl mb-4">⏳</div>
+          <p className="text-xl font-semibold">Loading quiz...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen relative">

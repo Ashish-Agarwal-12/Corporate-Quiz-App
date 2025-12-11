@@ -42,15 +42,15 @@ export default function QuestionDisplay({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.2 }}
-      className="w-full max-w-4xl mx-auto"
+      className="w-full max-w-4xl mx-auto px-2 sm:px-4"
     >
-      <div className="text-center mb-6">
-        <span className="text-base font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-500 px-6 py-3 rounded-2xl shadow-lg">
+      <div className="text-center mb-4 sm:mb-6">
+        <span className="text-sm sm:text-base font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-500 px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl shadow-lg">
           Question {currentIndex + 1} of {totalQuestions}
         </span>
       </div>
 
-      <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-10 mb-6 border-2 border-white/30">
+      <div className="bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-10 mb-4 sm:mb-6 border-2 border-white/30">
         {/* Media Display */}
         {question.media_url && (
           <motion.div

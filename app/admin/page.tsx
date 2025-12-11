@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Quiz } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Plus, Play, Edit, Trash2, Eye, RotateCcw, LogOut } from 'lucide-react';
+import { Plus, Play, Edit, Trash2, Eye, RotateCcw, LogOut, FileEdit } from 'lucide-react';
 import Logo from '@/components/Logo';
 import PulsingBackground from '@/components/animations/PulsingBackground';
 import toast, { Toaster } from 'react-hot-toast';
@@ -109,6 +109,31 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleUnpublish = async (quizId: string) => {
+    if (!confirm('Unpublish this quiz? It will return to draft status and you can edit it.')) return;
+
+    try {
+      playSoundEffect.click();
+      const response = await fetch(`/api/quizzes/${quizId}/unpublish`, {
+        method: 'POST',
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        playSoundEffect.success();
+        toast.success(data.message || 'Quiz unpublished successfully!');
+        fetchQuizzes();
+      } else {
+        const errorData = await response.json();
+        playSoundEffect.error();
+        toast.error(errorData.error || 'Failed to unpublish quiz');
+      }
+    } catch (error) {
+      playSoundEffect.error();
+      toast.error('Failed to unpublish quiz');
+    }
+  };
+
   const handleLogout = () => {
     if (confirm('Are you sure you want to logout?')) {
       playSoundEffect.whoosh();
@@ -136,45 +161,49 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen p-8 relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
+    <div className="min-h-screen p-4 sm:p-6 md:p-8 relative bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
       <Toaster position="top-right" />
       <SoundToggle />
       <PulsingBackground />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 sm:mb-8">
           <motion.div
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="flex items-center gap-4"
+            className="flex items-center gap-2 sm:gap-4"
           >
-            <Logo size="md" showText={true} animated={false} />
+            <Logo size="sm" showText={false} animated={false} className="sm:hidden" />
+            <Logo size="md" showText={true} animated={false} className="hidden sm:flex" />
             <div>
-              <h1 className="text-4xl font-bold text-white drop-shadow-lg">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
                 Admin Dashboard
               </h1>
-              <p className="text-white/90 mt-1 text-base font-medium">Create and manage your quizzes</p>
+              <p className="text-white/90 mt-1 text-sm sm:text-base font-medium">Create and manage your quizzes</p>
             </div>
           </motion.div>
 
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            className="flex gap-3"
+            className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto"
           >
             <Button
               size="lg"
               onClick={() => router.push('/admin/create')}
+              className="w-full sm:w-auto"
             >
-              <Plus className="w-5 h-5" />
-              Create New Quiz
+              <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Create New Quiz</span>
+              <span className="sm:hidden">Create Quiz</span>
             </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={handleLogout}
+              className="w-full sm:w-auto"
             >
-              <LogOut className="w-5 h-5" />
+              <LogOut className="w-4 h-4 sm:w-5 sm:h-5" />
               Logout
             </Button>
           </motion.div>
@@ -199,7 +228,7 @@ export default function AdminDashboard() {
             </Button>
           </motion.div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {quizzes.map((quiz, index) => (
               <motion.div
                 key={quiz.id}
@@ -247,13 +276,23 @@ export default function AdminDashboard() {
                         </>
                       )}
                       {quiz.status === 'published' && (
-                        <Button
-                          size="sm"
-                          onClick={() => router.push(`/admin/host/${quiz.id}`)}
-                        >
-                          <Play className="w-4 h-4" />
-                          Start Quiz
-                        </Button>
+                        <>
+                          <Button
+                            size="sm"
+                            onClick={() => router.push(`/admin/host/${quiz.id}`)}
+                          >
+                            <Play className="w-4 h-4" />
+                            Start Quiz
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            onClick={() => handleUnpublish(quiz.id)}
+                          >
+                            <FileEdit className="w-4 h-4" />
+                            Unpublish
+                          </Button>
+                        </>
                       )}
                       {quiz.status === 'active' && (
                         <Button

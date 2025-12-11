@@ -57,7 +57,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.6 }}
-            className="text-3xl text-white/95 font-bold mb-3 drop-shadow-lg"
+            className="text-xl sm:text-2xl md:text-3xl text-white/95 font-bold mb-2 sm:mb-3 drop-shadow-lg px-4"
           >
             The Ultimate Interactive Quiz Experience
           </motion.p>
@@ -66,13 +66,13 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 0.6 }}
-            className="text-xl text-white/90 max-w-2xl mx-auto font-medium"
+            className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto font-medium px-4"
           >
             Unlock your mind's potential with real-time quizzes, live leaderboards, and stunning animations!
           </motion.p>
         </motion.div>
 
-        <div className="max-w-2xl mx-auto mb-12">
+        <div className="max-w-2xl mx-auto mb-8 sm:mb-12">
           {/* Join Quiz Card */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -133,24 +133,24 @@ export default function Home() {
                 Instant synchronization across all devices
               </p>
             </div>
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-pink-50 to-rose-50 hover:scale-[1.02] transition-transform duration-200">
-              <div className="text-6xl mb-4">🏆</div>
-              <h3 className="font-bold text-gray-900 mb-3 text-xl">Live Leaderboard</h3>
-              <p className="text-base text-gray-700">
+            <div className="text-center p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-pink-50 to-rose-50 hover:scale-[1.02] transition-transform duration-200">
+              <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4">🏆</div>
+              <h3 className="font-bold text-gray-900 mb-2 sm:mb-3 text-lg sm:text-xl">Live Leaderboard</h3>
+              <p className="text-sm sm:text-base text-gray-700">
                 Track rankings in real-time
               </p>
             </div>
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-cyan-50 to-blue-50 hover:scale-[1.02] transition-transform duration-200">
-              <div className="text-6xl mb-4">🎨</div>
-              <h3 className="font-bold text-gray-900 mb-3 text-xl">Rich Media</h3>
-              <p className="text-base text-gray-700">
+            <div className="text-center p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-cyan-50 to-blue-50 hover:scale-[1.02] transition-transform duration-200">
+              <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4">🎨</div>
+              <h3 className="font-bold text-gray-900 mb-2 sm:mb-3 text-lg sm:text-xl">Rich Media</h3>
+              <p className="text-sm sm:text-base text-gray-700">
                 Support for images, videos & audio
               </p>
             </div>
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-yellow-50 to-orange-50 hover:scale-[1.02] transition-transform duration-200">
-              <div className="text-6xl mb-4">⚡</div>
-              <h3 className="font-bold text-gray-900 mb-3 text-xl">Lightning Fast</h3>
-              <p className="text-base text-gray-700">
+            <div className="text-center p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-yellow-50 to-orange-50 hover:scale-[1.02] transition-transform duration-200">
+              <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4">⚡</div>
+              <h3 className="font-bold text-gray-900 mb-2 sm:mb-3 text-lg sm:text-xl">Lightning Fast</h3>
+              <p className="text-sm sm:text-base text-gray-700">
                 Optimized for 100+ players
               </p>
             </div>

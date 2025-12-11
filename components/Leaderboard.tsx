@@ -20,8 +20,8 @@ export default function Leaderboard({ leaderboard, showTop = 5 }: LeaderboardPro
   };
 
   return (
-    <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl p-6 min-w-[300px] border-2 border-white/30">
-      <h3 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+    <div className="bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 w-full sm:min-w-[300px] border-2 border-white/30">
+      <h3 className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-6 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
         🏆 Leaderboard
       </h3>
       <div className="space-y-3">
