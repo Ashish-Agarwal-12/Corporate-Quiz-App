@@ -154,8 +154,6 @@ export default function PlayQuiz() {
       setQuiz(data.quiz);
     } catch (error) {
       toast.error('Failed to load quiz');
-    } finally {
-      setLoading(false);
     }
   };
 
